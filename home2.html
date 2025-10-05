@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>SK Spirulina | Navbar</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #fff;
+    }
+
+    nav {
+      width: 100%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 60px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      transition: all 0.4s ease;
+      
+    }
+
+    nav.scrolled {
+      background: #f9f9f9;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5em;
+      font-weight: 600;
+      color: #060707;
+      text-decoration: none;
+    }
+
+    .logo2 img {
+      height: 45px;
+      transition: transform 0.4s ease;
+    }
+
+    .logo2:hover img {
+      transform: scale(1.1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+      list-style: none;
+      font-weight: 400;
+    }
+
+    .nav-links a {
+      font-weight: 400;
+      text-decoration: none;
+      color: #222;
+      font-size: 1.05em;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -4px;
+      background-color: #04a637;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #04a637;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Search Icon */
+    .search {
+      font-size: 1.3em;
+      color: #333;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .search:hover {
+      transform: scale(1.2);
+      color: #04a637;
+    }
+
+    /* Mobile Menu */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      transition: all 0.4s ease;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        padding: 15px 30px;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.5s ease;
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="logo2">
+      <img src="https://i.ibb.co/RTJQfK08/logo.png" alt="SK Spirulina Logo" />
+      SK SPIRULINA
+    </a>
+
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="product.html">Products</a></li>
+      <li><a href="research.html">Research & Cultivation</a></li>
+      <li><a href="blogspage.html">Blogs</a></li>
+      <li><a href="contacts.html">Contact Us</a></li>
+    </ul>
+
+    <div class="search"><i class="fa fa-search" style="font-size:20px"></i></div>
+  </nav>
+
+  <script>
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      menuToggle.classList.toggle("open");
+    });
+
+    window.addEventListener("scroll", () => {
+      const nav = document.querySelector("nav");
+      nav.classList.toggle("scrolled", window.scrollY > 20);
+    });
+  </script>
+
+</body>
+</html>

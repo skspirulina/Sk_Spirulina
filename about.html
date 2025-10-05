@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | SK Spirulina Farming & Manufacturing</title>
+  <link rel="icon" type="image/x-icon" href="https://i.ibb.co/RTJQfK08/logo.png">
+
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    /* ----------- Base ----------- */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: #f9fcfc;
+      color: #333;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+     nav {
+      width: 100%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 60px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      transition: all 0.4s ease;
+      
+    }
+
+    nav.scrolled {
+      background: #f9f9f9;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5em;
+      font-weight: 600;
+      color: #060707;
+      text-decoration: none;
+    }
+
+    .logo2 img {
+      height: 45px;
+      transition: transform 0.4s ease;
+    }
+
+    .logo2:hover img {
+      transform: scale(1.1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+      list-style: none;
+      font-weight: 400;
+    }
+
+    .nav-links a {
+      font-weight: 400;
+      text-decoration: none;
+      color: #222;
+      font-size: 1.05em;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -4px;
+      background-color: #04a637;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #04a637;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Search Icon */
+    .search {
+      font-size: 1.3em;
+      color: #333;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .search:hover {
+      transform: scale(1.2);
+      color: #04a637;
+    }
+
+    /* Mobile Menu */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      transition: all 0.4s ease;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        padding: 15px 30px;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.5s ease;
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    h1,h2,h3 {
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ----------- Header ----------- */
+    header {
+      background: linear-gradient(rgba(0,50,80,0.5), rgba(0,50,80,0.5)),
+                  url('https://media.gettyimages.com/id/1335438382/photo/spirulina-powder-and-pills-shot-from-above-on-wooden-table.jpg?s=612x612&w=0&k=20&c=ekSY3BfZGaJFH0tS0XKQ1H4zEFLtXxuyiVXGPK2MEgQ=') center/cover no-repeat;
+      color: #fff;
+      padding: 150px 20px;
+      text-align: center;
+      position: relative;
+    }
+    header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+    header p {
+      font-size: 1.3rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* ----------- Sections ----------- */
+    .section {
+      padding: 60px 16px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .section h2 {
+      text-align: center;
+      color: #00695c;
+      margin-bottom: 25px;
+      font-size: 2.5rem;
+      text-transform: uppercase;
+    }
+    .section h2::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: #2196f3;
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+    .section p {
+      max-width: 1000px;
+      margin: 0 auto 18px;
+      text-align: center;
+      font-size: 1.15rem;
+    }
+
+    /* ----------- Image Rows ----------- */
+    .image-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+    .image-row img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      transition: transform 0.4s ease;
+    }
+    .image-row img:hover {
+      transform: scale(1.05);
+    }
+
+    /* ----------- Cards Grid ----------- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 35px;
+      margin-top: 60px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      padding: 40px 25px;
+      text-align: center;
+      transition: 0.4s ease;
+    }
+    .card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+    .card img {
+      width: 80px;
+      margin-bottom: 20px;
+      filter: hue-rotate(140deg);
+    }
+    .card h3 {
+      color: #2b8df7;
+      margin-bottom: 15px;
+    }
+
+    /* ----------- Values List ----------- */
+    .values-list {
+      list-style: none;
+      text-align: left;
+      max-width: 800px;
+      margin: 30px auto 0;
+      font-size: 1.1rem;
+      background: #e0f2f1;
+      padding: 30px;
+      border-radius: 15px;
+    }
+    .values-list li {
+      margin-bottom: 15px;
+      position: relative;
+      padding-left: 30px;
+    }
+    .values-list li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: #00695c;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#" class="logo2">
+      <img src="https://i.ibb.co/RTJQfK08/logo.png" alt="SK Spirulina Logo" />
+      SK SPIRULINA
+    </a>
+
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="product.html">Products</a></li>
+      <li><a href="research.html">Research & Cultivation</a></li>
+      <li><a href="blogspage.html">Blogs</a></li>
+      <li><a href="contacts.html">Contact Us</a></li>
+    </ul>
+
+    <div class="search"><i class="fa fa-search" style="font-size:20px"></i></div>
+  </nav>
+
+  <!-- HEADER -->
+  <header data-aos="fade-down">
+    <h1>About Us</h1>
+    <p>SK Spirulina Farming & Manufacturing — Empowering health through nature’s most powerful superfood from Karad, Maharashtra.</p>
+  </header>
+
+  <!-- WHO WE ARE -->
+  <section class="section">
+    <h2 data-aos="fade-up">Who We Are</h2>
+    <p data-aos="fade-up" data-aos-delay="100">
+      At SK Spirulina Farming, we are dedicated to bringing nature’s purest superfood to your table.
+       With a passion for health and sustainability, we specialize in cultivating premium-quality 
+       Spirulina—a nutrient-rich algae recognized globally as a NASA-endorsed superfood.
+
+    Our journey began with a simple vision: to promote wellness through natural and eco-friendly farming.
+      Every step of our process, from cultivation to packaging, is carried out with care to ensure that 
+      our Spirulina is 100% natural, chemical-free, and packed with essential proteins, vitamins, and minerals.
+      
+    We believe in delivering not just a product, but a promise of health, energy, and vitality.
+      With innovation, transparency, and customer trust at our core, SK Spirulina Farming continues to
+      grow as a brand that empowers healthier lifestyles and a greener future.    
+</p>
+    <div class="image-row" data-aos="zoom-in" data-aos-delay="200">
+      <img src="https://i.ibb.co/S77S35Vk/pond.jpg" alt="Spirulina Farm">
+      <img src="https://i.ibb.co/gM3vNtR0/test.jpg" alt="Quality Testing">
+      <img src="https://media.istockphoto.com/id/1137565943/photo/smiling-mother-with-child-daughter-drinks-healthy-green-smoothie-with-straw-in-a-jar-mug-in.jpg?s=612x612&w=0&k=20&c=Y-sum0eO-iIyMRtC7q0rljxpDfO0a1PYVvBtUqFqnv0=" alt="Manufacturing">
+    </div>
+  </section>
+
+  <!-- OUR JOURNEY -->
+  <section class="section">
+    <h2 data-aos="fade-up">Our Journey</h2>
+    <p data-aos="fade-up" data-aos-delay="100">
+      Started in a small farm in Karad, SK Spirulina has grown into a renowned name in the Indian superfood industry. 
+      With cutting-edge photobioreactors, advanced drying and processing technologies, and an unwavering focus on 
+      environmental responsibility, we are setting new standards for Spirulina production in India.
+
+      At SK Spirulina Farming, our story began with a simple dream – to bring the world’s most powerful superfood
+       closer to people in its purest form. What started as a small-scale farming initiative has now grown into 
+       a trusted source of premium-quality Spirulina, cultivated with care, passion, and a commitment to sustainability.
+    </p>
+  </section>
+
+  <!-- MISSION & VISION -->
+  <section class="section">
+    <div class="grid">
+      <div class="card" data-aos="fade-right">
+        <img src="https://i.ibb.co/XZyj57SH/m.png" alt="Mission Icon">
+        <h3>Our Mission</h3>
+        <p>
+          To deliver the purest, nutrient-rich Spirulina supplements 
+          that promote better health while protecting our environment.
+        </p>
+      </div>
+      <div class="card" data-aos="fade-left" data-aos-delay="100">
+        <img src="https://i.ibb.co/4RDsZXMz/v.png" alt="Vision Icon">
+        <h3>Our Vision</h3>
+        <p>
+          To become the most trusted global brand in Spirulina innovation, 
+          recognized for quality, integrity, and sustainability.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE VALUES -->
+  <section class="section">
+    <h2 data-aos="fade-up">Our Core Values</h2>
+    <ul class="values-list" data-aos="fade-up" data-aos-delay="100">
+      <li>Sustainability – Caring for nature while cultivating nutrition.</li>
+      <li>Integrity – Honest, ethical, and transparent in all operations.</li>
+      <li>Quality – Committed to delivering only the best products.</li>
+      <li>Innovation – Continuously improving methods & technology.</li>
+      <li>Community – Creating jobs and supporting local farmers.</li>
+    </ul>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="section">
+    <h2 data-aos="fade-up">Why Choose SK Spirulina?</h2>
+    <div class="grid">
+      <div class="card" data-aos="zoom-in">
+        <img src="https://i.ibb.co/20ZZtmcn/pre.png" alt="Quality Icon">
+        <h3>Premium Quality</h3>
+        <p>Grown with natural nutrients, clean water, and advanced monitoring systems.</p>
+      </div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="100">
+        <img src="https://cdn-icons-png.flaticon.com/512/1087/1087927.png" alt="Science Icon">
+        <h3>Scientific Approach</h3>
+        <p>Lab-tested production and strict quality control in every batch we produce.</p>
+      </div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="200">
+        <img src="https://i.ibb.co/yFWW3wqz/eco.png" alt="Sustainability Icon">
+        <h3>Eco-Friendly</h3>
+        <p>Low water use, zero pesticides, and renewable energy-powered facilities.</p>
+      </div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="300">
+        <img src="https://cdn-icons-png.flaticon.com/512/942/942799.png" alt="Trust Icon">
+        <h3>Trusted Brand</h3>
+        <p>Preferred by thousands of health-conscious consumers across India.</p>
+      </div>
+    </div>
+  </section>
+
+   <!-- Font Awesome CDN for Social Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- Logo Section -->
+    <div class="footer-logo">
+      <img src="https://i.ibb.co/RTJQfK08/logo.png" alt="SK Spirulina Logo">
+      <h3>SK Spirulina</h3>
+      <p>Farming & Manufacturing, Karad</p>
+    </div>
+
+    <!-- Links Section -->
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+      <a href="product.html"><i class="fas fa-capsules"></i> Products</a>
+      <a href="blogspage.html"><i class="fas fa-blog"></i> Blog</a>
+      <a href="contacts.html"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+
+  <!-- Social Media Section -->
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/people/S-K-Spirulina-Farming-and-Manufacturing/61579004079291/?rdid=Sm3RM4BpiEhc6lyf&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1STLdcYQSi%2F" target="_blank" class="fb"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/sk_spirulina_/#" target="_blank" class="ig"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/message/ZOJJIY27QHF5I1" target="_blank" class="wa"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.linkedin.com/company/sk-spirulina-farming-and-manufacturing" target="_blank" class="ln"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.youtube.com/@SkSpirulina" target="_blank" class="yt"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="footer-bottom">
+    <p>© 2025 SK Spirulina. All Rights Reserved. Website Design By indrajeet</p>
+  </div>
+</footer>
+
+<!-- Footer CSS -->
+<style>
+  .footer {
+    background: linear-gradient(90deg, #0d6efd, #198754);
+    color: white;
+    padding: 40px 20px 20px;
+    font-family: Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  /* Logo Animation */
+  .footer-logo {
+    flex: 1;
+    min-width: 220px;
+    text-align: left;
+    animation: fadeInLeft 1.2s ease-in-out;
+  }
+
+  .footer-logo img {
+    width: 120px;
+    margin-bottom: 10px;
+    transition: transform 0.4s ease;
+  }
+
+  .footer-logo img:hover {
+    transform: rotate(10deg) scale(1.1);
+  }
+
+  .footer-logo h3 {
+    margin: 5px 0;
+    font-size: 20px;
+  }
+
+  /* Quick Links */
+  .footer-links {
+    flex: 1;
+    min-width: 180px;
+    animation: fadeInUp 1.2s ease-in-out;
+  }
+
+  .footer-links h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+  .footer-links a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 6px 0;
+    transition: all 0.3s ease;
+  }
+
+  .footer-links a i {
+    margin-right: 8px;
+  }
+
+  .footer-links a:hover {
+    transform: translateX(6px);
+    color: #ffeb3b;
+  }
+
+  /* Social Media */
+  .footer-social {
+    flex: 1;
+    min-width: 220px;
+    animation: fadeInRight 1.2s ease-in-out;
+  }
+
+  .footer-social h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 12px;
+  }
+
+  .social-icons a {
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    text-align: center;
+    font-size: 18px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.4s ease;
+  }
+
+  .social-icons a:hover {
+    transform: scale(1.2) rotate(360deg);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  }
+
+  .fb:hover { background: #1877f2; }
+  .ig:hover { background: #e1306c; }
+  .wa:hover { background: #25d366; }
+  .ln:hover { background: #0a66c2; }
+  .yt:hover { background: #ff0000; }
+
+  /* Footer Bottom */
+  .footer-bottom {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 13px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    padding-top: 15px;
+  }
+
+  /* Animations */
+  @keyframes fadeInLeft {
+    from {opacity:0; transform: translateX(-50px);}
+    to {opacity:1; transform: translateX(0);}
+  }
+
+  @keyframes fadeInRight {
+    from {opacity:0; transform: translateX(50px);}
+    to {opacity:1; transform: translateX(0);}
+  }
+
+  @keyframes fadeInUp {
+    from {opacity:0; transform: translateY(50px);}
+    to {opacity:1; transform: translateY(0);}
+  }
+</style>
+
+
+    <!-- Copyright -->
+    <hr style="border: 0; height: 1px; background: rgba(255,255,255,0.4); margin: 20px 0;">
+    <p style="font-size: 13px; margin: 0;">
+      © 2025 SK Spirulina Farming & Manufacturing, Karad. All Rights Reserved.
+    </p>
+  </div>
+</footer>
+
+<script>
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      menuToggle.classList.toggle("open");
+    });
+
+    window.addEventListener("scroll", () => {
+      const nav = document.querySelector("nav");
+      nav.classList.toggle("scrolled", window.scrollY > 20);
+    });
+  </script>
+  <!-- AOS Animation JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1200,
+      once: true
+    });
+  </script>
+</body>
+</html>

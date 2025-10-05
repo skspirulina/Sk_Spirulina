@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SK Spirulina Farming - Blogs</title>
+  <link rel="icon" type="image/x-icon" href="https://i.ibb.co/RTJQfK08/logo.png">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- AOS Animation -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8fcf9;
+      color: #222;
+    }
+
+     nav {
+      width: 100%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 60px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      transition: all 0.4s ease;
+      
+    }
+
+    nav.scrolled {
+      background: #f9f9f9;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5em;
+      font-weight: 600;
+      color: #060707;
+      text-decoration: none;
+    }
+
+    .logo2 img {
+      height: 45px;
+      transition: transform 0.4s ease;
+    }
+
+    .logo2:hover img {
+      transform: scale(1.1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+      list-style: none;
+      font-weight: 400;
+    }
+
+    .nav-links a {
+      font-weight: 400;
+      text-decoration: none;
+      color: #222;
+      font-size: 1.05em;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -4px;
+      background-color: #04a637;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #04a637;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Search Icon */
+    .search {
+      font-size: 1.3em;
+      color: #333;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .search:hover {
+      transform: scale(1.2);
+      color: #04a637;
+    }
+
+    /* Mobile Menu */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      transition: all 0.4s ease;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        padding: 15px 30px;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.5s ease;
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+     /* HEADER */
+    header {
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                  url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJPtOnE_Fxa4Tkk5utuf3tpKyFE6YRNmLTv8rnEsxt3XP8ok8i18ATmRUMhpZ2Oh2kJnk&usqp=CAU") 
+                  center/cover no-repeat;
+      color: #fff;
+      text-align: center;
+      padding: 100px 15px;
+      position: relative;
+      overflow: hidden;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      max-width: 800px;
+      margin: 0 auto 15px;
+      animation: fadeInDown 1.5s ease-in-out;
+      backdrop-filter: blur(8px);
+    }
+    header p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+      animation: fadeInUp 2s ease-in-out;
+      backdrop-filter: blur(8px);
+    }
+    .blog-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .blog-card {
+      background: white;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      cursor: pointer;
+    }
+    .blog-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .blog-card img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .blog-card:hover img {
+      transform: scale(1.08);
+    }
+    .blog-content {
+      padding: 20px;
+    }
+    .blog-content h3 {
+      font-size: 1.4rem;
+      margin: 0 0 12px;
+      color: #007a5e;
+    }
+    .blog-content p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #444;
+      margin-bottom: 15px;
+    }
+    .read-more {
+      display: inline-block;
+      padding: 10px 16px;
+      background: linear-gradient(to right, #00b09b, #96c93d);
+      color: white;
+      font-size: 0.9rem;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .read-more:hover {
+      background: linear-gradient(to right, #007a5e, #7cb342);
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="logo2">
+      <img src="https://i.ibb.co/RTJQfK08/logo.png" alt="SK Spirulina Logo" />
+      SK SPIRULINA
+    </a>
+
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="product.html">Products</a></li>
+      <li><a href="research.html">Research & Cultivation</a></li>
+      <li><a href="blogspage.html">Blogs</a></li>
+      <li><a href="contacts.html">Contact Us</a></li>
+    </ul>
+
+    <div class="search"><i class="fa fa-search" style="font-size:20px"></i></div>
+  </nav>
+
+  <header>
+    <h1>🌿 SK Spirulina Farming Blogs</h1>
+    <p>Discover the Power of Spirulina for Health, Nutrition & Wellness</p>
+  </header>
+
+  <section class="blog-container">
+    <!-- Blog 1 -->
+    <div class="blog-card" data-aos="fade-up">
+      <a href="blog1.html"><img src="https://media.istockphoto.com/id/1137565943/photo/smiling-mother-with-child-daughter-drinks-healthy-green-smoothie-with-straw-in-a-jar-mug-in.jpg?s=612x612&w=0&k=20&c=Y-sum0eO-iIyMRtC7q0rljxpDfO0a1PYVvBtUqFqnv0=" alt="Spirulina Tablets"></a>
+      <div class="blog-content">
+        <h3>🌱 Spirulina – The Superfood for Every Family’s Health</h3>
+        <p>Spirulina is packed with protein, vitamins, and minerals. Discover why it’s called a superfood...</p>
+        <a href="blog1.html" class="read-more">Read More</a>
+      </div>
+    </div>
+    <!-- Blog 2 -->
+    <div class="blog-card" data-aos="fade-up" data-aos-delay="100">
+      <a href="blog2.html"><img src="https://i.ibb.co/qFkTqVqx/b2.png" alt="Spirulina Capsules"></a>
+      <div class="blog-content">
+        <h3>🚀 NASA Superfood Spirulina Powder by SK Spirulina Farming</h3>
+        <p>Adding Spirulina to your daily diet can improve immunity, energy, and overall well-being...</p>
+        <a href="blog2.html" class="read-more">Read More</a>
+      </div>
+    </div>
+    <!-- Blog 3 -->
+    <div class="blog-card" data-aos="fade-up" data-aos-delay="200">
+      <a href="blog3.html"><img src="https://i.ibb.co/jZ3NpJQq/b3.png" alt="Spirulina Powder"></a>
+      <div class="blog-content">
+        <h3>💪 Spirulina Tablets & Capsules – The Natural Gym Power Booster</h3>
+        <p>Learn how SK Spirulina uses sustainable farming methods to grow the purest spirulina...</p>
+        <a href="blog3.html" class="read-more">Read More</a>
+      </div>
+    </div>
+    <!-- Blog 4 -->
+    <div class="blog-card" data-aos="fade-up" data-aos-delay="300">
+      <a href="blog4.html"><img src="https://i.ibb.co/8LLRTPfd/b5.png" alt="Spirulina Energy"></a>
+      <div class="blog-content">
+        <h3>🌱 Urja Shrot Spirulina – Nature’s Most Powerful Superfood from SK Spirulina Farming</h3>
+        <p>Feeling tired? Discover how Spirulina helps boost stamina and reduces fatigue naturally...</p>
+        <a href="blog4.html" class="read-more">Read More</a>
+      </div>
+    </div>
+    <!-- Blog 5 -->
+    <div class="blog-card" data-aos="fade-up" data-aos-delay="400">
+      <a href="blog5.html"><img src="https://i.ibb.co/nNTxzS42/5.png" alt="Skin Health"></a>
+      <div class="blog-content">
+        <h3>🌿 Glow Naturally with Spirulina – The Beauty & Wellness Superfood from SK Spirulina Farming</h3>
+        <p>Spirulina’s antioxidants help fight aging and promote glowing skin from within...</p>
+        <a href="blog5.html" class="read-more">Read More</a>
+      </div>
+    </div>
+    <!-- Blog 6 -->
+    <div class="blog-card" data-aos="fade-up" data-aos-delay="500">
+      <a href="blog6.html"><img src="https://i.ibb.co/27MDQ0wM/b6.png" alt="Immunity Boost"></a>
+      <div class="blog-content">
+        <h3>🌿 One Solution for the Whole Family’s Health – Urja Shrot Spirulina </h3>
+        <p>Rich in nutrients and antioxidants, Spirulina strengthens immunity and protects against diseases...</p>
+        <a href="blog6.html" class="read-more">Read More</a>
+      </div>
+    </div>
+    <!-- Blog 7 -->
+    <div class="blog-card" data-aos="fade-up" data-aos-delay="600">
+      <a href="blog7.html"><img src="https://i.ibb.co/gMLXwpcV/8.png" alt="Weight Loss"></a>
+      <div class="blog-content">
+        <h3>🌿 Spirulina – Complete Health Benefits for Every Organ of the Body</h3>
+        <p>Discover how Spirulina supports healthy metabolism and helps in natural weight loss...</p>
+        <a href="blog7.html" class="read-more">Read More</a>
+      </div>
+    </div>
+  </section>
+
+   <!-- Font Awesome CDN for Social Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- Logo Section -->
+    <div class="footer-logo">
+      <img src="https://i.ibb.co/RTJQfK08/logo.png" alt="SK Spirulina Logo">
+      <h3>SK Spirulina</h3>
+      <p>Farming & Manufacturing, Karad</p>
+    </div>
+
+    <!-- Links Section -->
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+      <a href="product.html"><i class="fas fa-capsules"></i> Products</a>
+      <a href="blogspage.html"><i class="fas fa-blog"></i> Blog</a>
+      <a href="contacts.html"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+
+   <!-- Social Media Section -->
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/people/S-K-Spirulina-Farming-and-Manufacturing/61579004079291/?rdid=Sm3RM4BpiEhc6lyf&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1STLdcYQSi%2F" target="_blank" class="fb"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/sk_spirulina_/#" target="_blank" class="ig"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/message/ZOJJIY27QHF5I1" target="_blank" class="wa"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.linkedin.com/company/sk-spirulina-farming-and-manufacturing" target="_blank" class="ln"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.youtube.com/@SkSpirulina" target="_blank" class="yt"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="footer-bottom">
+    <p>© 2025 SK Spirulina. All Rights Reserved. Website Design By indrajeet</p>
+  </div>
+</footer>
+
+<!-- Footer CSS -->
+<style>
+  .footer {
+    background: linear-gradient(90deg, #0d6efd, #198754);
+    color: white;
+    padding: 40px 20px 20px;
+    font-family: Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  /* Logo Animation */
+  .footer-logo {
+    flex: 1;
+    min-width: 220px;
+    text-align: left;
+    animation: fadeInLeft 1.2s ease-in-out;
+  }
+
+  .footer-logo img {
+    width: 120px;
+    margin-bottom: 10px;
+    transition: transform 0.4s ease;
+  }
+
+  .footer-logo img:hover {
+    transform: rotate(10deg) scale(1.1);
+  }
+
+  .footer-logo h3 {
+    margin: 5px 0;
+    font-size: 20px;
+  }
+
+  /* Quick Links */
+  .footer-links {
+    flex: 1;
+    min-width: 180px;
+    animation: fadeInUp 1.2s ease-in-out;
+  }
+
+  .footer-links h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+  .footer-links a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 6px 0;
+    transition: all 0.3s ease;
+  }
+
+  .footer-links a i {
+    margin-right: 8px;
+  }
+
+  .footer-links a:hover {
+    transform: translateX(6px);
+    color: #ffeb3b;
+  }
+
+  /* Social Media */
+  .footer-social {
+    flex: 1;
+    min-width: 220px;
+    animation: fadeInRight 1.2s ease-in-out;
+  }
+
+  .footer-social h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 12px;
+  }
+
+  .social-icons a {
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    text-align: center;
+    font-size: 18px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.4s ease;
+  }
+
+  .social-icons a:hover {
+    transform: scale(1.2) rotate(360deg);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  }
+
+  .fb:hover { background: #1877f2; }
+  .ig:hover { background: #e1306c; }
+  .wa:hover { background: #25d366; }
+  .ln:hover { background: #0a66c2; }
+  .yt:hover { background: #ff0000; }
+
+  /* Footer Bottom */
+  .footer-bottom {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 13px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    padding-top: 15px;
+  }
+
+  /* Animations */
+  @keyframes fadeInLeft {
+    from {opacity:0; transform: translateX(-50px);}
+    to {opacity:1; transform: translateX(0);}
+  }
+
+  @keyframes fadeInRight {
+    from {opacity:0; transform: translateX(50px);}
+    to {opacity:1; transform: translateX(0);}
+  }
+
+  @keyframes fadeInUp {
+    from {opacity:0; transform: translateY(50px);}
+    to {opacity:1; transform: translateY(0);}
+  }
+</style>
+
+  <!-- AOS Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+  </script>
+
+  <script>
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      menuToggle.classList.toggle("open");
+    });
+
+    window.addEventListener("scroll", () => {
+      const nav = document.querySelector("nav");
+      nav.classList.toggle("scrolled", window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>

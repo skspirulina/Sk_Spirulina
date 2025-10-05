@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | SK Spirulina</title>
+  <link rel="icon" type="image/x-icon" href="https://i.ibb.co/RTJQfK08/logo.png">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f7f9f5;
+      color: #333;
+    }
+
+     nav {
+      width: 100%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 60px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      transition: all 0.4s ease;
+      
+    }
+
+    nav.scrolled {
+      background: #f9f9f9;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5em;
+      font-weight: 600;
+      color: #060707;
+      text-decoration: none;
+    }
+
+    .logo2 img {
+      height: 45px;
+      transition: transform 0.4s ease;
+    }
+
+    .logo2:hover img {
+      transform: scale(1.1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+      list-style: none;
+      font-weight: 400;
+    }
+
+    .nav-links a {
+      font-weight: 400;
+      text-decoration: none;
+      color: #222;
+      font-size: 1.05em;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -4px;
+      background-color: #04a637;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #04a637;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Search Icon */
+    .search {
+      font-size: 1.3em;
+      color: #333;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .search:hover {
+      transform: scale(1.2);
+      color: #04a637;
+    }
+
+    /* Mobile Menu */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      transition: all 0.4s ease;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        padding: 15px 30px;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.5s ease;
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    /* Header Section */
+    header {
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("https://img.freepik.com/free-vector/contact-us-concept-landing-page_23-2148285425.jpg") center/cover no-repeat;
+      color: #050505;
+      text-align: center;
+      padding: 120px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+      animation: fadeInDown 1.5s ease forwards;
+    }
+
+    header p {
+      margin: 10px 0 0;
+      animation: fadeInUp 1.5s ease forwards;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Contact Info Cards */
+    .contact-info {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin: -50px 20px 50px;
+    }
+
+    .contact-card {
+      background: white;
+      border-radius: 10px;
+      padding: 30px 20px;
+      text-align: center;
+      margin: 20px;
+      flex: 1 1 200px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.2);
+    }
+
+    .contact-card svg {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 10px;
+      fill: #0cc145;
+      transition: 0.3s;
+    }
+
+    .contact-card:hover svg {
+      fill: #0cc145;
+    }
+
+    .contact-card h3 {
+      margin: 10px 0;
+    }
+
+    /* Form & Map Section */
+    .form-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 50px 20px;
+    }
+
+    .contact-form, .map-section {
+      background: white;
+      flex: 1 1 400px;
+      margin: 10px;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .contact-form h2, .map-section h2 {
+      color: #0cc145;
+    }
+
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: #0cc145;
+      box-shadow: 0 0 5px #0cc145;
+      outline: none;
+    }
+
+    .contact-form button {
+      background: #0cc145;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .contact-form button:hover {
+      background: #0cc145;
+    }
+
+    iframe {
+      width: 100%;
+      height: 350px;
+      border: 0;
+      border-radius: 10px;
+    }
+
+    @media(max-width: 768px) {
+      .contact-info {
+        flex-direction: column;
+        margin: 0 20px 50px;
+      }
+      .form-section {
+        flex-direction: column;
+      }
+    }
+
+   .Review {
+    
+    overflow: hidden;
+   }
+
+   .success-message {
+    text-align: center;
+    padding: 15px;
+    background: #d4edda;
+    color: #155724;
+    border-radius: 8px;
+    margin-top: 15px;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .success-message.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="logo2">
+      <img src="https://i.ibb.co/RTJQfK08/logo.png" alt="SK Spirulina Logo" />
+      SK SPIRULINA
+    </a>
+
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="product.html">Products</a></li>
+      <li><a href="research.html">Research & Cultivation</a></li>
+      <li><a href="blogspage.html">Blogs</a></li>
+      <li><a href="contacts.html">Contact Us</a></li>
+    </ul>
+
+    <div class="search"><i class="fa fa-search" style="font-size:20px"></i></div>
+  </nav>
+
+  <!-- Header Section -->
+  <header>
+    <h1>CONTACT US</h1>
+    
+  </header>
+
+  <!-- Contact Info Cards with SVGs -->
+  <section class="contact-info">
+    <div class="contact-card" data-aos="fade-up">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24a11.05 11.05 0 003.45.55c.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.07 21 3 13.93 3 5c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.2.19 2.35.55 3.45.11.35.03.74-.25 1.02l-2.18 2.32z"/></svg>
+      <h3>Phone</h3>
+      <p>+91 9503965357</p>
+    </div>
+
+    <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      <h3>Email Us</h3>
+      <p>skspirulina@gmail.com</p>
+    </div>
+
+    <div class="contact-card" data-aos="fade-up" data-aos-delay="200">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8zm-.5-13h1v6l5.25 3.15-.5.85L11.5 13V7z"/></svg>
+      <h3>Working Hours</h3>
+      <p>Mon - Sun, 7am - 9pm</p>
+    </div>
+
+    <div class="contact-card" data-aos="fade-up" data-aos-delay="300">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z"/></svg>
+      <h3>Address</h3>
+      <p>Karad, Maharashtra, India</p>
+    </div>
+  </section>
+<!-- Elfsight Google Reviews | Untitled Google Reviews -->
+<div class="Review"><script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-b48ba9e9-a123-4ae4-9ef7-626508bc07f6" data-elfsight-app-lazy></div>
+</div><br>
+  <!-- Form & Map Section -->
+  <section class="form-section">
+    <div class="contact-form" data-aos="fade-right1">
+      <h2>Get In Touch</h2>
+       <form id="contactForm">
+      <input type="text" id="firstName" placeholder="First Name" required>
+      <input type="text" id="lastName" placeholder="Last Name" required>
+      <input type="tel" id="phone" placeholder="Phone Number" required pattern="[0-9]{10}">
+      <input type="email" id="email" placeholder="Email Address" required>
+      <textarea id="query" rows="4" placeholder="Your Query" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+    <p id="message"></p>
+    </div>
+<script>
+  const scriptURL = "https://script.google.com/macros/s/AKfycbwADBJLGLPPfWVXKIFD3aUVK1WpzvWqQndyez5gKdo5uyOoSUKnZdeOUW1cL0QyymP2/exec";
+
+  // Submit form
+  document.getElementById("contactForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    let data = {
+      firstName: document.getElementById("firstName").value,
+      lastName: document.getElementById("lastName").value,
+      phone: document.getElementById("phone").value,
+      email: document.getElementById("email").value,
+      query: document.getElementById("query").value
+    };
+
+    document.getElementById("message").innerText = "Submitting...";
+
+    try {
+      let res = await fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(data)
+      });
+
+      let result = await res.json();
+      document.getElementById("message").innerText = result.message;
+      fetchData(); // Refresh table
+      document.getElementById("contactForm").reset();
+    } catch (err) {
+      document.getElementById("message").innerText = "Error submitting!";
+    }
+  });
+
+  // Fetch and display data
+  async function fetchData() {
+    let res = await fetch(scriptURL);
+    let data = await res.json();
+
+    let tbody = document.querySelector("#dataTable tbody");
+    tbody.innerHTML = "";
+
+    data.reverse().forEach(row => {
+      let tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${row.date}</td>
+        <td>${row.firstName}</td>
+        <td>${row.lastName}</td>
+        <td>${row.phone}</td>
+        <td>${row.email}</td>
+        <td>${row.query}</td>`;
+      tbody.appendChild(tr);
+    });
+  }
+
+  // Load data on page load
+  fetchData();
+</script>
+    <div class="map-section" data-aos="fade-left">
+      <h2>Our Location</h2>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d192768.82160266375!2d73.99033439684446!3d17.250156071687822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc187b0b53f630f%3A0xfc7aec25488dd62b!2sSK%20Spirulina%20Farming%20and%20Manufacturing!5e0!3m2!1sen!2sin!4v1758866778701!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+
+      </iframe>
+    </div>
+  </section>
+
+  
+
+  <!-- Font Awesome CDN for Social Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- Logo Section -->
+    <div class="footer-logo">
+      <img src="https://i.ibb.co/RTJQfK08/logo.png" alt="SK Spirulina Logo">
+      <h3>SK Spirulina</h3>
+      <p>Farming & Manufacturing, Karad</p>
+    </div>
+
+    <!-- Links Section -->
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+      <a href="product.html"><i class="fas fa-capsules"></i> Products</a>
+      <a href="blogspage.html"><i class="fas fa-blog"></i> Blog</a>
+      <a href="contacts.html"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+
+   <!-- Social Media Section -->
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/people/S-K-Spirulina-Farming-and-Manufacturing/61579004079291/?rdid=Sm3RM4BpiEhc6lyf&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1STLdcYQSi%2F" target="_blank" class="fb"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/sk_spirulina_/#" target="_blank" class="ig"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/message/ZOJJIY27QHF5I1" target="_blank" class="wa"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.linkedin.com/company/sk-spirulina-farming-and-manufacturing" target="_blank" class="ln"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.youtube.com/@SkSpirulina" target="_blank" class="yt"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="footer-bottom">
+    <p>© 2025 SK Spirulina. All Rights Reserved. Website Design By indrajeet</p>
+  </div>
+</footer>
+
+<!-- Footer CSS -->
+<style>
+  .footer {
+    background: linear-gradient(90deg, #0d6efd, #198754);
+    color: white;
+    padding: 40px 20px 20px;
+    font-family: Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  /* Logo Animation */
+  .footer-logo {
+    flex: 1;
+    min-width: 220px;
+    text-align: left;
+    animation: fadeInLeft 1.2s ease-in-out;
+  }
+
+  .footer-logo img {
+    width: 120px;
+    margin-bottom: 10px;
+    transition: transform 0.4s ease;
+  }
+
+  .footer-logo img:hover {
+    transform: rotate(10deg) scale(1.1);
+  }
+
+  .footer-logo h3 {
+    margin: 5px 0;
+    font-size: 20px;
+  }
+
+  /* Quick Links */
+  .footer-links {
+    flex: 1;
+    min-width: 180px;
+    animation: fadeInUp 1.2s ease-in-out;
+  }
+
+  .footer-links h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+  .footer-links a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 6px 0;
+    transition: all 0.3s ease;
+  }
+
+  .footer-links a i {
+    margin-right: 8px;
+  }
+
+  .footer-links a:hover {
+    transform: translateX(6px);
+    color: #ffeb3b;
+  }
+
+  /* Social Media */
+  .footer-social {
+    flex: 1;
+    min-width: 220px;
+    animation: fadeInRight 1.2s ease-in-out;
+  }
+
+  .footer-social h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 12px;
+  }
+
+  .social-icons a {
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    text-align: center;
+    font-size: 18px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.4s ease;
+  }
+
+  .social-icons a:hover {
+    transform: scale(1.2) rotate(360deg);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  }
+
+  .fb:hover { background: #1877f2; }
+  .ig:hover { background: #e1306c; }
+  .wa:hover { background: #25d366; }
+  .ln:hover { background: #0a66c2; }
+  .yt:hover { background: #ff0000; }
+
+  /* Footer Bottom */
+  .footer-bottom {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 13px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    padding-top: 15px;
+  }
+
+  /* Animations */
+  @keyframes fadeInLeft {
+    from {opacity:0; transform: translateX(-50px);}
+    to {opacity:1; transform: translateX(0);}
+  }
+
+  @keyframes fadeInRight {
+    from {opacity:0; transform: translateX(50px);}
+    to {opacity:1; transform: translateX(0);}
+  }
+
+  @keyframes fadeInUp {
+    from {opacity:0; transform: translateY(50px);}
+    to {opacity:1; transform: translateY(0);}
+  }
+</style>
+
+  <!-- AOS Animation JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+
+  <script>
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      menuToggle.classList.toggle("open");
+    });
+
+    window.addEventListener("scroll", () => {
+      const nav = document.querySelector("nav");
+      nav.classList.toggle("scrolled", window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>
