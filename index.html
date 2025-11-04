@@ -156,22 +156,190 @@
     }
 
     /* ---------- SLIDER ---------- */
-    .slider-container{
-      background:url('https://media.istockphoto.com/id/2213561301/photo/heap-green-spirulina-algae-powder-in-wooden-spoon-with-heart-shape-top-view-on-green.jpg?s=612x612&w=0&k=20&c=B4YXtJ5i5gZ94M-Bh-OeEovJJQAFKP_fif4Kuqw2WTo=') no-repeat center/cover;
-      height:100vh;position:relative;display:flex;justify-content:center;align-items:center;color:#fff;text-align:left
-    }
-    .overlay{position:absolute;inset:0;background:rgba(0,0,0,0.55);z-index:1}
-    .slide{position:absolute;top:50%;left:100%;transform:translateY(-50%);width:90%;max-width:1000px;display:flex;align-items:center;gap:30px;opacity:0;z-index:2;transition:all 1s ease-in-out}
-    .slide.active{left:50%;transform:translate(-50%,-50%);opacity:1}
-    .slide img{width:180px;border-radius:8px;box-shadow:0 5px 20px rgba(0,0,0,.5)}
-    .text-content{max-width:500px}
-    .text-content h2{font-size:1.5rem}
-    .text-content h1{font-size:2rem;font-weight:700;color:#00ffcc;margin:10px 0}
-    .btn{padding:10px 22px;background:#00ffcc;color:#000;border:none;border-radius:5px;font-size:.95rem;cursor:pointer;transition:.3s}
-    .btn:hover{background:#00cc99}
-    .arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);color:#fff;border:none;font-size:20px;padding:8px;cursor:pointer;z-index:3;border-radius:50%}
-    .arrow.left{left:10px}.arrow.right{right:10px}
+ .slider-container {
+  background: url('https://media.istockphoto.com/id/2213561301/photo/heap-green-spirulina-algae-powder-in-wooden-spoon-with-heart-shape-top-view-on-green.jpg?s=612x612&w=0&k=20&c=B4YXtJ5i5gZ94M-Bh-OeEovJJQAFKP_fif4Kuqw2WTo=') 
+  no-repeat center/cover;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: left;
+  overflow: hidden;
+}
 
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+.slide {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  width: 90%;
+  max-width: 1000px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  opacity: 0;
+  z-index: 2;
+  transition: all 1s ease-in-out;
+}
+
+.slide.active {
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+.slide img {
+  width: 200px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, .5);
+}
+
+.text-content {
+  max-width: 500px;
+}
+
+.text-content h2 {
+  font-size: 1.8rem;
+}
+
+.text-content h1 {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #00ffcc;
+  margin: 10px 0;
+}
+
+.text-content p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 12px 26px;
+  background: #00ffcc;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.btn:hover {
+  background: #00cc99;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  font-size: 22px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 3;
+  border-radius: 50%;
+}
+
+.arrow.left { left: 10px; }
+.arrow.right { right: 10px; }
+
+/* ---------- RESPONSIVE DESIGN ---------- */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .slide {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .slide img {
+    width: 160px;
+  }
+
+  .text-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .text-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .text-content {
+    max-width: 90%;
+  }
+
+  .btn {
+    font-size: 0.95rem;
+  }
+}
+
+/* ---------- MOBILE (No Animations) ---------- */
+@media (max-width: 600px) {
+  .slider-container {
+    height: 100vh;
+    padding: 80px 20px;
+    text-align: center;
+  }
+
+  .slide {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    width: 100%;
+    left: 100%; /* keep hidden by default */
+    transform: translateY(-50%) scale(1.1);
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transition: all 1s ease-in-out;
+  }
+
+  .slide.active {
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  .slide img {
+    width: 120px;
+  }
+
+  .text-content h1 {
+    font-size: 1.4rem;
+  }
+
+  .text-content h2 {
+    font-size: 1rem;
+  }
+
+  .text-content p {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+
+  /* Hide arrows on mobile for simplicity */
+  .arrow {
+    display: none;
+  }
+}
     /* ---------- ABOUT ---------- */
     .about{display:flex;align-items:center;gap:40px;flex-wrap:wrap}
     .about img{width:100%;max-width:400px;border-radius:15px;box-shadow:0 10px 25px rgba(0,0,0,.2)}
@@ -207,16 +375,13 @@
    
     /* ---------- RESPONSIVE ---------- */
     @media(max-width:768px){
-      .slide{flex-direction:column;text-align:center;gap:15px}
-      .slide img{width:140px}
-      .text-content h1{font-size:1.5rem}
+      
       .about{flex-direction:column;text-align:center}
       #quickModal .modal-box{flex-direction:column}
       #quickModal img{width:90%}
     }
     @media(max-width:480px){
-      .text-content h2{font-size:1rem}
-      .text-content p{font-size:.9rem}
+   
       .btn{padding:8px 18px;font-size:.85rem}
     }
 
@@ -473,7 +638,7 @@
       <li><a href="contacts.html">Contact Us</a></li>
     </ul>
 
-    <div class="search"><i class="fa fa-search" style="font-size:20px"></i></div>
+    <!--   <div class="search"><i class="fa fa-search" style="font-size:20px"></i></div>  -->
   </nav>
 
   <div class="slider-container">
