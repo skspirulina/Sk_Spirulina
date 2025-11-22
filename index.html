@@ -909,15 +909,17 @@
       <label for="address">Full Address</label>
       <textarea name="address" id="address" required></textarea>
 
-          <label for="products">Select Products</label>
-<select name="products[]" id="products" multiple required size="6">
-  <option value="urja-tablets">Urja Shrot Tablets</option>
-  <option value="urja-capsules">Urja Shrot Capsules</option>
-  <option value="powder-100g">Spirulina Powder 100g</option>
-  <option value="loose-tablets">Spirulina Loose Tablets</option>
-  <option value="loose-capsules">Spirulina Loose Capsules</option>
-  <option value="soap">Spirulina Soap</option>
-</select>
+        
+      <label for="products">Select Product</label>
+      <select name="products" id="products" required>
+        <option value="">--Select--</option>
+        <option>Urja Shrot Tablets</option>
+        <option>Urja Shrot Capsules</option>
+        <option>Spirulina Powder 100g</option>
+        <option>Spirulina Loose Tablets</option>
+        <option>Spirulina Loose Capsules</option>
+        <option>Spirulina Soap</option>
+      </select>
 
       <label for="quantity">Quantity</label>
       <input type="number" name="quantity" id="quantity" min="1" required>
@@ -1136,4 +1138,5 @@
 
 </body>
 </html>
+
 
