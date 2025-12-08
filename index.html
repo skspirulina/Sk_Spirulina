@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SK Spirulina Farming & Manufacturing</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+   <!-- Swiper for sliders -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <!-- AOS for scroll animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Poppins',sans-serif;overflow-x:hidden;background:#f5f5f5;line-height:1.5}
+    section{padding:40px 20px}
+
+     nav {
+      width: 100%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 60px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      transition: all 0.4s ease;
+      
+    }
+
+    nav.scrolled {
+      background: #f9f9f9;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5em;
+      font-weight: 600;
+      color: #060707;
+      text-decoration: none;
+    }
+
+    .logo2 img {
+      height: 45px;
+      transition: transform 0.4s ease;
+    }
+
+    .logo2:hover img {
+      transform: scale(1.1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+      list-style: none;
+      font-weight: 400;
+    }
+
+    .nav-links a {
+      font-weight: 400;
+      text-decoration: none;
+      color: #222;
+      font-size: 1.05em;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -4px;
+      background-color: #04a637;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #04a637;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Search Icon */
+    .search {
+      font-size: 1.3em;
+      color: #333;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .search:hover {
+      transform: scale(1.2);
+      color: #04a637;
+    }
+
+    /* Mobile Menu */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      transition: all 0.4s ease;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        padding: 15px 30px;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.5s ease;
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    /* ---------- SLIDER ---------- */
+ .slider-container {
+  background: url('https://media.istockphoto.com/id/2213561301/photo/heap-green-spirulina-algae-powder-in-wooden-spoon-with-heart-shape-top-view-on-green.jpg?s=612x612&w=0&k=20&c=B4YXtJ5i5gZ94M-Bh-OeEovJJQAFKP_fif4Kuqw2WTo=') 
+  no-repeat center/cover;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: left;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+.slide {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  width: 90%;
+  max-width: 1000px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  opacity: 0;
+  z-index: 2;
+  transition: all 1s ease-in-out;
+}
+
+.slide.active {
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+.slide img {
+  width: 200px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, .5);
+}
+
+.text-content {
+  max-width: 500px;
+}
+
+.text-content h2 {
+  font-size: 1.8rem;
+}
+
+.text-content h1 {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #00ffcc;
+  margin: 10px 0;
+}
+
+.text-content p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 12px 26px;
+  background: #00ffcc;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.btn:hover {
+  background: #00cc99;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  font-size: 22px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 3;
+  border-radius: 50%;
+}
+
+.arrow.left { left: 10px; }
+.arrow.right { right: 10px; }
+
+/* ---------- RESPONSIVE DESIGN ---------- */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .slide {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .slide img {
+    width: 160px;
+  }
+
+  .text-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .text-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .text-content {
+    max-width: 90%;
+  }
+
+  .btn {
+    font-size: 0.95rem;
+  }
+}
+
+/* ---------- MOBILE (No Animations) ---------- */
+@media (max-width: 600px) {
+  .slider-container {
+    height: 100vh;
+    padding: 80px 20px;
+    text-align: center;
+  }
+
+  .slide {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    width: 100%;
+    left: 100%; /* keep hidden by default */
+    transform: translateY(-50%) scale(1.1);
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transition: all 1s ease-in-out;
+  }
+
+  .slide.active {
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  .slide img {
+    width: 120px;
+  }
+
+  .text-content h1 {
+    font-size: 1.4rem;
+  }
+
+  .text-content h2 {
+    font-size: 1rem;
+  }
+
+  .text-content p {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+
+  /* Hide arrows on mobile for simplicity */
+  .arrow {
+    display: none;
+  }
+}
+    /* ---------- ABOUT ---------- */
+    .about{display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+    .about img{width:100%;max-width:400px;border-radius:15px;box-shadow:0 10px 25px rgba(0,0,0,.2)}
+    .about-text{flex:1;min-width:260px}
+    .about-text h2{font-size:2rem;margin-bottom:15px;color:#2c8c64}
+    .about-text p{font-size:1rem;color:#333}
+
+    /* ---------- CERTIFICATIONS ---------- */
+    .certifications{text-align:center}
+    .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:20px}
+    .cert-card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 6px 15px rgba(0,0,0,.1);transition:.4s}
+    .cert-card:hover{transform:translateY(-8px)}
+    .cert-card img{width:80px;margin-bottom:10px}
+    .cert-card h3{margin:10px 0;color:#2c8c64}
+
+    /* ---------- PRODUCTS ---------- */
+    #products h2{text-align:center;color:#2c8c64;margin-bottom:20px}
+    .products .product{background:#fff;border-radius:12px;padding:12px;text-align:center;transition:.3s}
+    .products .product:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,0.1)}
+    .products .product img{width:100%;max-width:200px;height:150px;object-fit:cover;border-radius:10px;transition:.5s;cursor: pointer;}
+    .products .product:hover img{transform:scale(1.08)}
+    .products .title{font-weight:600;margin-top:10px}
+    .products .price{color:#555;font-size:.9rem}
+
+    /* ---------- QUICK VIEW MODAL ---------- */
+    #quickModal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.55);z-index:120}
+    #quickModal .modal-box{max-width:900px;width:95%;background:#fff;border-radius:12px;overflow:hidden;display:flex;flex-wrap:wrap;gap:18px;align-items:center;padding:18px}
+    #quickModal img{width:300px;max-width:100%;border-radius:10px}
+    #quickModal h3{margin:5px 0}
+    #quickModal p{color:#555;font-size:.95rem}
+
+    /* ---------- FOOTER ---------- */
+   
+    /* ---------- RESPONSIVE ---------- */
+    @media(max-width:768px){
+      
+      .about{flex-direction:column;text-align:center}
+      #quickModal .modal-box{flex-direction:column}
+      #quickModal img{width:90%}
+    }
+    @media(max-width:480px){
+   
+      .btn{padding:8px 18px;font-size:.85rem}
+    }
+
+      @media (max-width:768px){
+    #quickModal > div {
+      flex-direction:column;
+      text-align:center;
+      padding:15px;
+    }
+    #quickModal img{
+      width:100%;
+      height:auto;
+    }
+    #quickModal h3{font-size:1.1rem}
+    #quickModal p{font-size:.9rem}
+  }
+
+  
+      @media (max-width:368px){
+    #quickModal > div {
+      flex-direction:column;
+      text-align:center;
+      padding:10px;
+    }
+    #quickModal img{
+      width:50%;
+      height:auto;
+    }
+    #quickModal h3{font-size:1rem}
+    #quickModal p{font-size:.7rem}
+  }
+
+   /* ---------- Order Form Modal ----------- */
+    .hide {
+      display: none;
+      position: fixed; inset: 0;
+      z-index: 1300;
+      background: rgba(0,0,0,0.6);
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .form-box {
+      background: #fff;
+      margin: auto;
+      max-width: 500px;
+      padding: 20px;
+      border-radius: 12px;
+      position: relative;
+    }
+    .form-box h2 { text-align: center; color: #00796b; }
+    label { display: block; margin: 10px 0 6px; font-weight: bold; }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    textarea { resize: vertical; min-height: 50px; }
+    .btn1 {
+      margin-top: 15px;
+      width: 100%;
+      padding: 10px;
+      background: #00796b;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .btn1:hover { background: #004d40; }
+    .message {
+      margin-top: 10px;
+      text-align: center;
+      font-weight: bold;
+      color: green;
+      display: none;
+    }
+    .close-btn1 {
+      position: absolute; right: 15px; top: 10px;
+      font-size: 24px; cursor: pointer;
+      font-weight: bold; transition: color 0.3s ease;
+    }
+
+    .close-btn1:hover {
+        color: red;
+        font-size: 28px;
+        font-weight: bold;
+    }
+  </style>
+
+  <!-- Footer CSS -->
+<style>
+  .footer {
+    background: linear-gradient(90deg, #0d6efd, #198754);
+    color: white;
+    padding: 40px 20px 20px;
+    font-family: Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  /* Logo Animation */
+  .footer-logo {
+    flex: 1;
+    min-width: 220px;
+    text-align: left;
+    animation: fadeInLeft 1.2s ease-in-out;
+  }
+
+  .footer-logo img {
+    width: 120px;
+    margin-bottom: 10px;
+    transition: transform 0.4s ease;
+  }
+
+  .footer-logo img:hover {
+    transform: rotate(10deg) scale(1.1);
+  }
+
+  .footer-logo h3 {
+    margin: 5px 0;
+    font-size: 20px;
+  }
+
+  /* Quick Links */
+  .footer-links {
+    flex: 1;
+    min-width: 180px;
+    animation: fadeInUp 1.2s ease-in-out;
+  }
+
+  .footer-links h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+  .footer-links a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 6px 0;
+    transition: all 0.3s ease;
+  }
+
+  .footer-links a i {
+    margin-right: 8px;
+  }
+
+  .footer-links a:hover {
+    transform: translateX(6px);
+    color: #ffeb3b;
+  }
+
+  /* Social Media */
+  .footer-social {
+    flex: 1;
+    min-width: 220px;
+    animation: fadeInRight 1.2s ease-in-out;
+  }
+
+  .footer-social h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 12px;
+  }
+
+  .social-icons a {
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    text-align: center;
+    font-size: 18px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.4s ease;
+  }
+
+  .social-icons a:hover {
+    transform: scale(1.2) rotate(360deg);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  }
+
+  .fb:hover { background: #1877f2; }
+  .ig:hover { background: #e1306c; }
+  .wa:hover { background: #25d366; }
+  .ln:hover { background: #0a66c2; }
+  .yt:hover { background: #ff0000; }
+
+  /* Footer Bottom */
+  .footer-bottom {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 13px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    padding-top: 15px;
+  }
+
+  /* Animations */
+  @keyframes fadeInLeft {
+    from {opacity:0; transform: translateX(-50px);}
+    to {opacity:1; transform: translateX(0);}
+  }
+
+  @keyframes fadeInRight {
+    from {opacity:0; transform: translateX(50px);}
+    to {opacity:1; transform: translateX(0);}
+  }
+
+  @keyframes fadeInUp {
+    from {opacity:0; transform: translateY(50px);}
+    to {opacity:1; transform: translateY(0);}
+  }
+</style>
+</head>
+
+
+
+<body>
+
+  <nav>
+    <a href="#" class="logo2">
+      <img src="https://i.ibb.co/RTJQfK08/logo.png" alt="SK Spirulina Logo" />
+      SK SPIRULINA
+    </a>
+
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="product.html">Products</a></li>
+      <li><a href="research.html">Research & Cultivation</a></li>
+      <li><a href="blogspage.html">Blogs</a></li>
+      <li><a href="contacts.html">Contact Us</a></li>
+    </ul>
+
+    <!--   <div class="search"><i class="fa fa-search" style="font-size:20px"></i></div>  -->
+  </nav>
+
+  <div class="slider-container">
+    <div class="overlay"></div>
+
+    <!-- Slide 1 -->
+    <div class="slide active">
+      <img src="https://i.ibb.co/GQ26KPfC/medicine.png" alt="Medicine 1">
+      <div class="text-content">
+        <h2>Welcome To SK Spirulina</h2>
+        <h1>Farm Fresh. Pure. Direct to You.</h1>
+        <p>At SK Spirulina Farming, we grow Spirulina with utmost care and purity.
+             No chemicals, no compromise – just fresh, nutrient-rich Spirulina delivered
+              from our farm to your family. Trust the source, feel the results.</p>
+        <button class="btn" onclick="openForm()">Buy Now</button>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+      <img src="https://i.ibb.co/GQ26KPfC/medicine.png" alt="Medicine 2">
+      <div class="text-content">
+        <h2>100% Natural</h2>
+        <h1>Organic Supplements</h1>
+        <p>Feel the difference with Urja Shrot Spirulina Tablets! A daily dose strengthens
+             your stamina, improves digestion, enhances skin glow, and keeps your
+              body active throughout the day. The perfect balance of nature and science
+               for modern living.</p>
+        <button class="btn" onclick="openForm()">Explore More</button>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+      <img src="https://i.ibb.co/GQ26KPfC/medicine.png" alt="Medicine 3">
+      <div class="text-content">
+        <h2>Boost Your Health</h2>
+        <h1>Nature’s Superfood for a Healthier Tomorrow</h1>
+        <p>Discover the incredible benefits of Spirulina – the NASA-approved superfood 
+            packed with protein, iron, vitamins, and antioxidants. Support your immunity, 
+            boost your energy, and transform your lifestyle with 100% natural nutrition.</p>
+        <button class="btn" onclick="openForm()">Shop Now</button>
+      </div>
+    </div>
+
+    <!-- Arrows -->
+    <button class="arrow left" onclick="prevSlide()">&#10094;</button>
+    <button class="arrow right" onclick="nextSlide()">&#10095;</button>
+  </div>
+
+  <!-- About Section -->
+  <section class="about">
+    <img src="https://media.gettyimages.com/id/1335438382/photo/spirulina-powder-and-pills-shot-from-above-on-wooden-table.jpg?s=612x612&w=0&k=20&c=ekSY3BfZGaJFH0tS0XKQ1H4zEFLtXxuyiVXGPK2MEgQ=" alt="About Spirulina" data-aos="fade-right">
+    <div class="about-text" data-aos="fade-left">
+      <h2>About SK Spirulina</h2>
+      <p>
+        SK Spirulina Farming & Manufacturing is dedicated to producing the highest quality Spirulina products. 
+        Our mission is to promote health and wellness through natural, eco-friendly, and sustainable farming methods.
+        We follow global standards in cultivation, harvesting, and processing to ensure purity and effectiveness.
+      </p>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section class="certifications">
+    <h2 data-aos="fade-up" id="pro">Certifications & Research</h2>
+    <div class="cert-grid">
+      <div class="cert-card" data-aos="fade-right">
+        <img src="https://i.ibb.co/zVds5m7M/WHO.png" alt="WHO">
+        <h3>WHO Research</h3>
+        <p>Recognized by WHO as one of the best superfoods with powerful nutritional benefits.</p>
+      </div>
+      <div class="cert-card" data-aos="fade-up">
+        <img src="https://i.ibb.co/TB5BpgX0/FDA.png" alt="FDA">
+        <h3>FDA Approved</h3>
+        <p>Our Spirulina meets global safety and quality standards for human consumption.</p>
+      </div>
+      <div class="cert-card" data-aos="fade-left">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg" alt="NASA">
+        <h3>NASA Research</h3>
+        <p>Used by NASA for astronauts as a dietary supplement for its rich protein content.</p>
+      </div>
+      <div class="cert-card" data-aos="fade-left">
+        <img src="https://i.ibb.co/8gJ2t3Qt/FSSAI.png" alt="FASSI">
+        <h3>FASSI Approved</h3>
+        <p>FSSAI has officially recognized spirulina as a nutraceutical ingredient.spirulina products must be certified by the FSSAI.</p>
+      </div>
+      <div class="cert-card" data-aos="fade-left">
+        <img src="https://i.ibb.co/fGYVBwD9/GLOBAL.png" alt="Global Research">
+        <h3>Worldwide Research</h3>
+        <p>Spirulina is studied by universities and health organizations worldwide
+           for its health benefits.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+ 
+<section id="products">
+      <h2 data-aos="fade-up" id="pro">Our Products</h2>
+  <div class="container">
+  
+    
+    <div style="margin-top:18px" data-aos="fade-up" data-aos-delay="160">
+      <div class="swiper products-swiper">
+        <div class="swiper-wrapper products">
+          <!-- Product 1 -->
+          <div class="swiper-slide">
+            <div class="product card" onclick="openQuick(1)">
+              <img src="https://i.ibb.co/zcCnxfn/tablets.jpg" alt="Urja Shrot Tablets">
+              <div class="title">Urja Shrot Tablets</div>
+              <div class="price">60 tablets • 500mg</div>
+            </div>
+          </div>
+          <!-- Product 2 -->
+          <div class="swiper-slide">
+            <div class="product card" onclick="openQuick(2)">
+              <img src="https://i.ibb.co/23LQpVHx/capsules.png" alt="Urja Shrot Capsules">
+              <div class="title">Urja Shrot Capsules</div>
+              <div class="price">60 veg caps • 500mg</div>
+            </div>
+          </div>
+          <!-- Product 3 -->
+          <div class="swiper-slide">
+            <div class="product card" onclick="openQuick(3)">
+              <img src="https://i.ibb.co/20tGXqfM/spirulina-pouch.jpg" alt="Spirulina Powder 100g">
+              <div class="title">Spirulina Powder 100g</div>
+              <div class="price">Rich in phycocyanin</div>
+            </div>
+          </div>
+          <!-- Product 4 -->
+          <div class="swiper-slide">
+            <div class="product card" onclick="openQuick(4)">
+              <img src="https://i.ibb.co/39z4Rz12/loos-tablets.jpg" alt="Spirulina Loose Tablets">
+              <div class="title">Spirulina Loose Tablets</div>
+              <div class="price">Custom counts available</div>
+            </div>
+          </div>
+          <!-- Product 5 -->
+          <div class="swiper-slide">
+            <div class="product card" onclick="openQuick(5)">
+              <img src="https://i.ibb.co/6LkQ5BV/loos-capsules.jpg" alt="Spirulina Loose Capsules">
+              <div class="title">Spirulina Loose Capsules</div>
+              <div class="price">Bulk packs available</div>
+            </div>
+          </div>
+          <!-- Product 6 -->
+          <div class="swiper-slide">
+            <div class="product card" onclick="openQuick(6)">
+              <img src="https://media.istockphoto.com/id/2233848842/photo/natural-soap.jpg?s=612x612&w=0&k=20&c=ZjEEkNhCj7V1jHxZEEJqEAeeeY4THIsW53Plw8Hhxsg=" alt="Spirulina Soap">
+              <div class="title">Spirulina Soap</div>
+              <div class="price">Gentle, nutrient-rich</div>
+            </div>
+          </div>
+        </div>
+        <!-- navigation -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quick View Modal for product zoom -->
+<div id="quickModal" 
+     style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;
+            background:rgba(2,6,23,0.55);z-index:120;padding:10px">
+  <div style="max-width:920px;width:100%;background:#fff;border-radius:12px;
+              overflow:hidden;display:flex;flex-wrap:wrap;gap:18px;align-items:center;
+              padding:18px;box-sizing:border-box">
+
+    <img id="quickImg" src="" alt="preview" 
+         style="width:320px;max-width:100%;height:auto;object-fit:cover;
+                border-radius:10px;flex:1 1 280px">
+
+    <div style="flex:1 1 260px;min-width:240px">
+      <h3 id="quickTitle" style="font-size:1.2rem;margin-bottom:8px">Title</h3>
+      <p id="quickDesc" style="color:#555;font-size:.95rem;line-height:1.4">Description</p>
+
+      <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:10px">
+        <button id="buyLink" class="btn" onclick="openForm()" 
+                style="flex:1;padding:10px 16px;background:#12630d;color:#fff;
+                       border:none;border-radius:8px;cursor:pointer">Buy Now</button>
+
+        <button onclick="closeQuick()" 
+                style="flex:1;padding:10px 16px;border-radius:8px;
+                       background:#f5f5f5;border:1px solid #ddd;cursor:pointer">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- Elfsight Google Reviews | Untitled Google Reviews -->
+<div class="Review"><script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-b48ba9e9-a123-4ae4-9ef7-626508bc07f6" data-elfsight-app-lazy></div>
+</div>
+
+<!-- Font Awesome CDN for Social Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- Logo Section -->
+    <div class="footer-logo">
+      <img src="https://i.ibb.co/RTJQfK08/logo.png" alt="SK Spirulina Logo">
+      <h3>SK Spirulina</h3>
+      <p>Farming & Manufacturing, Karad</p>
+    </div>
+
+    <!-- Links Section -->
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+      <a href="product.html"><i class="fas fa-capsules"></i> Products</a>
+      <a href="blogspage.html"><i class="fas fa-blog"></i> Blog</a>
+      <a href="contacts.html"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+
+<!-- Social Media Section -->
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/people/S-K-Spirulina-Farming-and-Manufacturing/61579004079291/?rdid=Sm3RM4BpiEhc6lyf&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1STLdcYQSi%2F" target="_blank" class="fb"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/sk_spirulina_/#" target="_blank" class="ig"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/message/ZOJJIY27QHF5I1" target="_blank" class="wa"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.linkedin.com/company/sk-spirulina-farming-and-manufacturing" target="_blank" class="ln"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.youtube.com/@SkSpirulina" target="_blank" class="yt"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="footer-bottom">
+    <p>© 2025 SK Spirulina. All Rights Reserved. Website Design By indrajeet</p>
+  </div>
+</footer>
+
+
+
+<!--------------------------------hide order form----------------------------------------------------------------->
+<!-- Order Form -->
+<!-- Order Form Modal -->
+<div id="orderForm" class="hide">
+  <div class="form-box">
+    <span class="close-btn1" onclick="closeForm()">&times;</span>
+    <h2>Place Your Order</h2>
+
+    <form id="submit-form">
+      <label for="name">Full Name</label>
+      <input type="text" name="name" id="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" required>
+
+      <label for="mobile">Mobile No</label>
+      <input type="text" name="mobile" id="mobile" required>
+
+      <label for="address">Full Address</label>
+      <textarea name="address" id="address" required></textarea>
+
+        
+      <label for="products">Select Product</label>
+      <select name="products" id="products" required>
+        <option value="">--Select--</option>
+        <option>Urja Shrot Tablets</option>
+        <option>Urja Shrot Capsules</option>
+        <option>Spirulina Powder 100g</option>
+        <option>Spirulina Loose Tablets</option>
+        <option>Spirulina Loose Capsules</option>
+        <option>Spirulina Soap</option>
+      </select>
+
+      <label for="quantity">Quantity</label>
+      <input type="number" name="quantity" id="quantity" min="1" required>
+
+      <button type="submit" class="btn1">Submit</button>
+      <div class="message" id="msg">Form Submitted Successfully ✅</div>
+    </form>
+  </div>
+</div>
+
+
+
+
+<!---------------------------------------------------------------------------------------------------------------->
+<script>
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      menuToggle.classList.toggle("open");
+    });
+
+    window.addEventListener("scroll", () => {
+      const nav = document.querySelector("nav");
+      nav.classList.toggle("scrolled", window.scrollY > 20);
+    });
+  </script>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({duration:800,easing:'ease-out-cubic',once:true});
+
+  // Main Swiper for product carousel
+  const productsSwiper = new Swiper('.products-swiper',{
+    slidesPerView:3,
+    spaceBetween:20,
+    loop:true,
+    navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'},
+    breakpoints:{
+      0:{slidesPerView:1},
+      640:{slidesPerView:2},
+      980:{slidesPerView:3}
+    }
+  });
+
+  // line swiper for certs
+  const lineSwiper = new Swiper('.line-swiper',{slidesPerView:'auto',spaceBetween:14,freeMode:true,loop:false});
+
+  // Simple quick-view data
+
+</script>
+      <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init({duration:1200, once:true});</script>
+  <script>
+    let slides = document.querySelectorAll('.slide');
+    let index = 0;
+
+    function showSlide(i) {
+      slides.forEach((slide, idx) => {
+        slide.classList.remove('active');
+        if (idx === i) {
+          slide.classList.add('active');
+        }
+      });
+    }
+
+    function nextSlide() {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    }
+
+    function prevSlide() {
+      index = (index - 1 + slides.length) % slides.length;
+      showSlide(index);
+    }
+
+    // Auto slide
+    setInterval(nextSlide, 5000); // every 5s
+  
+</script>
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>AOS.init({ duration:1000, once:true });</script>
+
+<script>
+  const quickModal=document.getElementById("quickModal");
+  const orderModal=document.getElementById("orderModal");
+
+ const productData = {
+  1: {
+    title: 'Urja Shrot Tablets',
+    desc: 'Power-packed spirulina tablets to boost immunity, energy, and daily nutrition naturally. Made from fresh farm-grown spirulina with zero chemicals, they enhance stamina, support digestion, and promote overall wellness for a healthier lifestyle.',
+    img: 'https://i.ibb.co/zcCnxfn/tablets.jpg'
+  },
+  2: {
+    title: 'Urja Shrot Capsules',
+    desc: 'Vegetarian spirulina capsules crafted from pure, organic powder. They improve metabolism, detoxify the body, strengthen immunity, and provide essential vitamins and minerals for daily health support.',
+    img: 'https://i.ibb.co/23LQpVHx/capsules.png'
+  },
+  3: {
+    title: 'Spirulina Powder 100g',
+    desc: 'Cold-milled spirulina powder retaining maximum nutrients and antioxidants. Perfect for smoothies, shakes, and recipes, it naturally boosts energy, supports heart health, and provides plant-based protein for optimal wellness.',
+    img: 'https://i.ibb.co/20tGXqfM/spirulina-pouch.jpg'
+  },
+  4: {
+    title: 'Spirulina Loose Tablets',
+    desc: 'Bulk loose spirulina tablets for custom usage and weight-based packs. These nutrient-rich tablets help improve immunity, promote vitality, support healthy skin, and provide a convenient daily supplement option.',
+    img: 'https://i.ibb.co/39z4Rz12/loos-tablets.jpg'
+  },
+  5: {
+    title: 'Spirulina Loose Capsules',
+    desc: 'High-quality loose spirulina capsules for retailers and wholesalers. Sustainably produced, they enhance energy levels, detoxify the body naturally, support mental clarity, and maintain overall health.',
+    img: 'https://i.ibb.co/6LkQ5BV/loos-capsules.jpg'
+  },
+  6: {
+    title: 'Spirulina Soap',
+    desc: 'Cold-processed spirulina soap enriched with antioxidants and vitamins. Gently nourishes the skin, improves elasticity, detoxifies naturally, and promotes a healthy glow while being completely chemical-free and eco-friendly.',
+    img: 'https://media.istockphoto.com/id/2233848842/photo/natural-soap.jpg?s=612x612&w=0&k=20&c=ZjEEkNhCj7V1jHxZEEJqEAeeeY4THIsW53Plw8Hhxsg='
+  }
+};
+
+
+  function openQuick(id){
+    const d=productData[id];
+    document.getElementById("quickImg").src=d.img;
+    document.getElementById("quickTitle").innerText=d.title;
+    document.getElementById("quickDesc").innerText=d.desc;
+    quickModal.style.display="flex";
+  }
+  function closeQuick(){ quickModal.style.display="none"; }
+  function openForm(){ orderModal.style.display="block"; }
+  function closeForm(){ orderModal.style.display="none"; }
+
+  // Form submission
+  
+  </script>
+  
+<style>
+  /* Loader spinner */
+  .loader {
+    border: 3px solid #f3f3f3; /* Light grey */
+    border-top: 3px solid #00796b; /* Green */
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+
+<script>
+  // Open/Close Form
+  function openForm() {
+    document.getElementById("orderForm").style.display = "block";
+  }
+  function closeForm() {
+    document.getElementById("orderForm").style.display = "none";
+  }
+
+  // Submit Form to Google Sheets
+  const scriptURL = "https://script.google.com/macros/s/AKfycbz0vp_djsX7kOIc6nIZ3YKdHP7OcMcKLJf1rXda7AAqOCQJrdqxBH2EdwWCO3KYztaC/exec";
+  const form = document.getElementById("submit-form");
+  const msg = document.getElementById("msg");
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+
+    // Show loader and "Submitting..." text
+    msg.style.display = "block";
+    msg.innerHTML = '<span class="loader"></span>Submitting...';
+
+    // Collect form data
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      mobile: form.mobile.value,
+      address: form.address.value,
+      products: form.product.value,
+      quantity: form.quantity.value
+    };
+
+    fetch(scriptURL, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      mode: "no-cors"
+    })
+    .then(() => {
+      // Show success message
+      msg.innerHTML = "✅ Order Confirmed!";
+      setTimeout(() => { msg.style.display = "none"; }, 3000);
+      form.reset();
+      closeForm();
+    })
+    .catch(error => {
+      msg.innerHTML = "❌ Error submitting form";
+      setTimeout(() => { msg.style.display = "none"; }, 3000);
+      console.error("Error:", error);
+    });
+  });
+</script>
+
+</body>
+</html>
+
+
